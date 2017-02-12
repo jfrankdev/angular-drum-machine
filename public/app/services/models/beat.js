@@ -16,6 +16,31 @@ var Beat = function() {
   }
 
   function toggle() {
+    var table = document.getElementsByTagName("button");
+    var isMouseDown = false;
+
+    for (var i = 0; i < table.length; i++) {
+      table[i].addEventListener('mousedown', function(){
+        isMouseDown = true;
+          this.classList.toggle('btn-on');
+          return false;
+
+      })
+    }
+
+    for (var i = 0; i < table.length; i++) {
+      table[i].addEventListener('mouseover', function(){
+        if (isMouseDown) {
+          this.classList.toggle('btn-on');
+          }
+      })
+    }
+
+    for (var i = 0; i < table.length; i++) {
+      table[i].addEventListener('mouseup', function(){
+      isMouseDown = false;
+      });
+    }
     active = (active ? false : true);
   }
 
