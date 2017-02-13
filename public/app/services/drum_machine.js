@@ -15,6 +15,8 @@ app.factory('drumMachine', function($http, $q, timerQueue) {
     var item, player, instrument;
     var file = instrumentFile || "/app/services/data/instruments/kit-1.json";
 
+    clickFunc();
+
     return $http.get(file).then(function(response) {
       for(var i = 0; i < 4; i++) {
         item = response.data.instruments[i];
@@ -51,6 +53,32 @@ app.factory('drumMachine', function($http, $q, timerQueue) {
 
   function rows() {
     return _rows;
+  }
+
+  function clickFunc() {
+    var btn = document.getElementsByTagName("button");
+    var isMouseDown = false;
+
+         document.addEventListener('mousedown', function(){
+           for (var i = 0; i < btn.length; i++) {
+             btn[i].addEventListener('mouseover', function(){
+               isMouseDown = true;
+               this.classList.toggle('btn-on');
+               return false;
+             })
+             isMouseDown = false;
+           }
+         })
+
+      document.addEventListener('mouseover', function(){
+        if (isMouseDown) {
+          }
+      })
+
+      document.addEventListener('mouseup', function(){
+        console.log('mouseup');
+      isMouseDown = false;
+      });
   }
 
   function tempo() {
