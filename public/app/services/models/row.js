@@ -9,7 +9,6 @@ var Row = function(instrument, initialBeats) {
 
   function getInstrument() {
     return instrument;
-    console.log('hey it loaded');
   }
 
   function getBeats() {
