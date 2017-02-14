@@ -16,6 +16,7 @@ var Beat = function() {
   }
 
   function toggle() {
+    console.log('hey its the toggle');
     active = (active ? false : true);
   }
 

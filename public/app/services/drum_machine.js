@@ -56,30 +56,31 @@ app.factory('drumMachine', function($http, $q, timerQueue) {
   }
 
   function clickFunc() {
-    var btn = document.getElementsByTagName("button");
-    var isMouseDown = false;
+      var btn = document.getElementsByTagName("button");
+      var isMouseDown;
 
-         document.addEventListener('mousedown', function(){
-           for (var i = 0; i < btn.length; i++) {
-             btn[i].addEventListener('mouseover', function(){
-               isMouseDown = true;
-               this.classList.toggle('btn-on');
-               return false;
-             })
+           document.addEventListener('mousedown', function(){
+             isMouseDown = true;
+             for (var i = 0; i < btn.length; i++) {
+               btn[i].addEventListener('mouseover', function(){
+                 //console.log(this.getAttribute('ng-click'));
+                 if(this.classList.contains('btn') && isMouseDown === true) {
+                   this.getAttribute('ng-click');
+                   this.classList.add('btn-on');
+                 }
+               })
+             }
+           });
+
+           document.addEventListener('mouseup', function(){
              isMouseDown = false;
-           }
-         })
+             for (var i = 0; i < btn.length; i++) {
+               btn[i].addEventListener('mouseup', function(){
+               })
+             }
+           });
+    }
 
-      document.addEventListener('mouseover', function(){
-        if (isMouseDown) {
-          }
-      })
-
-      document.addEventListener('mouseup', function(){
-        console.log('mouseup');
-      isMouseDown = false;
-      });
-  }
 
   function tempo() {
     return _tempo;
